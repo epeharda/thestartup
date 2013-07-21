@@ -9,9 +9,12 @@ var Hypher = require('hypher'),
 
 var nodes = [];
 _.each(names, function(name) {
-  var words = name.split(/\s+/);
-  var prefixSyllables = h.hyphenate(words[0]);
-  var suffixSyllables = h.hyphenate(words[words.length - 1]);
+  var prefixSyllables = _.flatten(_.map(h.hyphenate(name), function(item) {
+    return item.match(/\s*[^\s]*/g);
+  }));
+  var suffixSyllables = _.flatten(_.map(h.hyphenate(name), function(item) {
+    return item.match(/[^\s]*\s*/g);
+  }));
 
   var prefixes = [], suffixes = [];
 
@@ -25,8 +28,8 @@ _.each(names, function(name) {
 
   var node = {
     name: name,
-    prefixes: prefixes,
-    suffixes: suffixes
+    prefixes: _.uniq(prefixes),
+    suffixes: _.uniq(suffixes)
   }
 
   nodes.push(node);
