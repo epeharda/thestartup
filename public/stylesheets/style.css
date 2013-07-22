@@ -2,49 +2,91 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+h1 {
+  color: #ff6b6b;
+}
 a {
-  color: #00B7FF;
+  color: #556270;
+}
+p {
+  width: 400px;
+}
+#stats {
+  float: left;
+  clear: both;
+  text-transform: uppercase;
+  font-size: 120%;
+  font-weight: bold;
+  padding: 20px 0 30px;
+  margin: 0;
+}
+#stats li {
+  float: left;
+  clear: none;
+  list-style: none;
+}
+#stats li.longest {
+  color: #4ecdc4;
+}
+#stats li.separator {
+  padding: 0 20px;
+  color: #556270;
+}
+#stats li.current {
+  color: #c7f464;
+}
+a#ql {
+  position: absolute;
+  left: 58px;
+  bottom: 58px;
+  display: block;
+  text-indent: -9000em;
+  width: 50px;
+  height: 50px;
+  background: url('../images/quickleft.png') no-repeat;
+}
+#canvas {
+  float: left;
+  clear: both;
 }
 #canvas.show span.first {
-  display: block;
+  width: 50px;
 }
 #canvas.show span.overlap {
-  display: block;
+  width: 50px;
 }
 #canvas.show span.second {
-  display: none;
+  width: 0;
+  margin-right: 0;
 }
 #canvas.advance span.first {
-  background-color: blue;
-}
-#canvas.advance span.overlap {
-  display: block;
+  width: 0;
+  margin-right: 0;
+  background-color: #fff;
+  color: #fff;
 }
 #canvas.advance span.second {
-  display: block;
-  background-color: pink;
+  width: 50px;
+  background-color: #ccc;
 }
 #canvas.reset span.first {
-  display: none;
+  width: 0;
+  margin-right: 0;
 }
 #canvas.reset span.overlap {
-  display: block;
-}
-#canvas.reset span.second {
-  display: block;
+  width: 50px;
 }
 #canvas span {
   float: left;
   clear: none;
   font-size: 120%;
-  width: 15px;
-  height: 15px;
-  padding: 10px;
+  width: 50px;
+  height: 30px;
+  padding-top: 10px;
   margin-right: 1px;
-  background-color: #ccc;
-  border: 3px solid #000;
-  transition: background-color 2s;
-  -webkit-transition: background-color 2s;
-  /* Safari */
-
+  margin-bottom: 1px;
+  background-color: #efefef;
+  overflow: hidden;
+  text-align: center;
+  transition: all 0.5s;
 }

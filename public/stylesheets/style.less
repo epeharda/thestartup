@@ -3,23 +3,106 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+@lightRed: #FF6B6B;
+@green: #C7F464;
+@gray: #556270;
+@blue: #4ECDC4;
+
+h1 {
+  color: @lightRed;
+}
+
 a {
-  color: #00B7FF;
+  color: @gray;
+}
+
+p {
+  width: 400px;
+}
+
+#stats {
+  float: left;
+  clear: both;
+  text-transform: uppercase;
+  font-size: 120%;
+  font-weight: bold;
+  padding: 20px 0 30px;
+  margin: 0;
+
+  li {
+    float: left;
+    clear: none;
+    list-style: none;
+  }
+
+  li.longest {
+    color: @blue;
+  }
+
+  li.separator {
+    padding: 0 20px;
+    color: @gray;
+  }
+
+  li.current {
+    color: @green;
+  }
+
+}
+
+a#ql {
+  position: absolute;
+  left: 58px;
+  bottom: 58px;
+  display: block;
+  text-indent: -9000em;
+  width: 50px;
+  height: 50px;
+  background: url('../images/quickleft.png') no-repeat;
+}
+
+
+// ***********
+// ANIMATIONS
+// ***********
+
+
+@width: 50px;
+@speed: 0.5s;
+
+.slideShow() {
+  width: @width;
+}
+
+.slideHide() {
+  width: 0;
+  margin-right: 0;
+}
+
+.firstStyle() {
+  background-color: #fff;
+  color: #fff;
+}
+
+.secondStyle() {
+  background-color: #ccc;
 }
 
 #canvas {
+  float: left;
+  clear: both;
 
   // first & overlap
   &.show {
     span {
       &.first {
-        display: block;
+        .slideShow();
       }
       &.overlap {
-        display: block;
+        .slideShow();
       }
       &.second {
-        display: none;
+        .slideHide();
       }
     }
   }
@@ -28,14 +111,12 @@ a {
   &.advance {
     span {
       &.first {
-        background-color: blue;
-      }
-      &.overlap {
-        display: block;
+        .slideHide();
+        .firstStyle();
       }
       &.second {
-        display: block;
-        background-color: pink;
+        .slideShow();
+        .secondStyle();
       }
     }
   }
@@ -44,13 +125,10 @@ a {
   &.reset {
     span {
       &.first {
-        display: none;
+        .slideHide();
       }
       &.overlap {
-        display: block;
-      }
-      &.second {
-        display: block;
+        .slideShow();
       }
     }
   }
@@ -59,14 +137,15 @@ a {
     float: left;
     clear: none;
     font-size: 120%;
-    width: 15px;
-    height: 15px;
-    padding: 10px;
+    width: @width;
+    height: @width - 20;
+    padding-top: 10px;
     margin-right: 1px;
-    background-color: #ccc;
-    border: 3px solid #000;
+    margin-bottom: 1px;
+    background-color: #efefef;
+    overflow: hidden;
+    text-align: center;
 
-    transition: background-color 2s;
-    -webkit-transition: background-color 2s; /* Safari */
+    transition: all @speed;
   }
 }

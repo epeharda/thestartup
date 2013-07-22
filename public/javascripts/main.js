@@ -20,10 +20,12 @@
   app.buildNames = function(names) {
     var nameObjects = _.map(names, function(name) {
       return {
-        title: name,
+        title: name.toUpperCase(),
         chars: []
       }
     });
+
+    app.updateLongestChain(nameObjects.length);
 
     return nameObjects;
   };
@@ -39,11 +41,14 @@
     // *deep breath*
     $canvas.attr('class', 'show');        // show first & overlap
     setTimeout(function() {
+
+      app.updateCurrent(index+2);         // update current counter
+
       $canvas.attr('class', 'advance');   // show overlap & second
       setTimeout(function() {
         $canvas.attr('class', 'reset');   // fade to black
         setTimeout(function() {
-          if (index+3 < names.length) {
+          if (index+2 < names.length) {
             app.render(names, index+1);   // recurse until end
           }
         }, ANIMATION_TIMER);
@@ -80,7 +85,6 @@
     var $secondSegment = app.wrapChars(secondSegment, 'second');
 
     return [].concat($firstSegment, $overlap, $secondSegment);
-
   };
 
   app.wrapChars = function(chars, classes) {
@@ -90,6 +94,14 @@
         class: classes
       });
     });
+  };
+
+  app.updateLongestChain = function(len) {
+    $('#stats .longest span').text(len);
+  };
+
+  app.updateCurrent = function(index) {
+    $('#stats .current span').text(index);
   };
 
   $(document).ready(app.init);
