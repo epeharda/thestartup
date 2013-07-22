@@ -2,10 +2,13 @@
 
   var TEMP_NAMES = ['little dog', 'doghouse', 'house warming partners', 'partners', 'partners in crime', 'crime stoppers'];
 
+  var ANIMATION_TIMER = 1000;
   var app = {};
 
   app.init = function() {
-    app.loadNames().then(app.renderCharacters);
+    app.loadNames()
+      .then(app.buildNames)
+      .then(app.render);
   };
 
   app.loadNames = function() {
@@ -14,19 +17,44 @@
     return new $.Deferred().resolve(TEMP_NAMES);
   };
 
-  app.renderCharacters = function(names) {
-    var nextName,
-        chars,
-        $chars = $('#chars');
-
-    _.each(names, function(name, i, list) {
-      nextName = list[i+1] || list[0];
-      chars = app.buildCharacterMarkup(name, nextName);
-      $chars.append(chars);
+  app.buildNames = function(names) {
+    var nameObjects = _.map(names, function(name) {
+      return {
+        title: name,
+        chars: []
+      }
     });
+
+    return nameObjects;
   };
 
-  app.buildCharacterMarkup = function(name, nextName) {
+  app.render = function(names, index) {
+    index = index || 0;
+    var $canvas = $('#canvas');
+
+    // build new set of chars
+    var $chars = app.buildCharacterMarkup(names, index);
+    $canvas.html($chars);
+
+    // *deep breath*
+    $canvas.attr('class', 'show');        // show first & overlap
+    setTimeout(function() {
+      $canvas.attr('class', 'advance');   // show overlap & second
+      setTimeout(function() {
+        $canvas.attr('class', 'reset');   // fade to black
+        setTimeout(function() {
+          if (index+3 < names.length) {
+            app.render(names, index+1);   // recurse until end
+          }
+        }, ANIMATION_TIMER);
+      }, ANIMATION_TIMER);
+    }, ANIMATION_TIMER);
+  };
+
+  app.buildCharacterMarkup = function(names, index) {
+
+    var name = names[index].title;
+    var nextName = names[index+1].title;
 
     // Second word index.
     var j = 0;
@@ -44,14 +72,24 @@
     }
 
     var overlap = nextName.slice(0, j);
-    var baseWord = name.slice(0, name.length - overlap.length);
+    var firstSegment = name.slice(0, name.length - overlap.length);
+    var secondSegment = nextName.slice(j);
 
-    var $chars = _.map(baseWord.split(''), function(c) {
-      return $('<span/>', { text: c });
+    var $firstSegment = app.wrapChars(firstSegment, 'first');
+    var $overlap = app.wrapChars(overlap, 'overlap');
+    var $secondSegment = app.wrapChars(secondSegment, 'second');
+
+    return [].concat($firstSegment, $overlap, $secondSegment);
+
+  };
+
+  app.wrapChars = function(chars, classes) {
+    return _.map(chars.split(''), function(c) {
+      return $('<span/>', {
+        text: c,
+        class: classes
+      });
     });
-
-    return $chars;
-
   };
 
   $(document).ready(app.init);

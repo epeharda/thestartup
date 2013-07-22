@@ -7,9 +7,66 @@ a {
   color: #00B7FF;
 }
 
-#chars {
+#canvas {
+
+  // first & overlap
+  &.show {
+    span {
+      &.first {
+        display: block;
+      }
+      &.overlap {
+        display: block;
+      }
+      &.second {
+        display: none;
+      }
+    }
+  }
+
+  // overlap & second
+  &.advance {
+    span {
+      &.first {
+        background-color: blue;
+      }
+      &.overlap {
+        display: block;
+      }
+      &.second {
+        display: block;
+        background-color: pink;
+      }
+    }
+  }
+
+  // reset
+  &.reset {
+    span {
+      &.first {
+        display: none;
+      }
+      &.overlap {
+        display: block;
+      }
+      &.second {
+        display: block;
+      }
+    }
+  }
+
   span {
-    border: 1px solid black;
+    float: left;
+    clear: none;
+    font-size: 120%;
+    width: 15px;
+    height: 15px;
+    padding: 10px;
     margin-right: 1px;
+    background-color: #ccc;
+    border: 3px solid #000;
+
+    transition: background-color 2s;
+    -webkit-transition: background-color 2s; /* Safari */
   }
 }

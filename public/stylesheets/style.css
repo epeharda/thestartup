@@ -5,7 +5,46 @@ body {
 a {
   color: #00B7FF;
 }
-#chars span {
-  border: 1px solid black;
+#canvas.show span.first {
+  display: block;
+}
+#canvas.show span.overlap {
+  display: block;
+}
+#canvas.show span.second {
+  display: none;
+}
+#canvas.advance span.first {
+  background-color: blue;
+}
+#canvas.advance span.overlap {
+  display: block;
+}
+#canvas.advance span.second {
+  display: block;
+  background-color: pink;
+}
+#canvas.reset span.first {
+  display: none;
+}
+#canvas.reset span.overlap {
+  display: block;
+}
+#canvas.reset span.second {
+  display: block;
+}
+#canvas span {
+  float: left;
+  clear: none;
+  font-size: 120%;
+  width: 15px;
+  height: 15px;
+  padding: 10px;
   margin-right: 1px;
+  background-color: #ccc;
+  border: 3px solid #000;
+  transition: background-color 2s;
+  -webkit-transition: background-color 2s;
+  /* Safari */
+
 }
