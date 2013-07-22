@@ -39,20 +39,23 @@
     $canvas.html($chars);
 
     // *deep breath*
-    $canvas.attr('class', 'show');        // show first & overlap
+    $canvas.attr('class', 'show');          // show first & overlap
     setTimeout(function() {
 
-      app.updateCurrent(index+2);         // update current counter
+      app.updateCurrent(index+2);           // update current counter
 
-      $canvas.attr('class', 'advance');   // show overlap & second
+      $canvas.attr('class', 'stage');       // first (fade) & overlap & second
       setTimeout(function() {
-        $canvas.attr('class', 'reset');   // fade to black
+        $canvas.attr('class', 'advance');   // show overlap & second
         setTimeout(function() {
-          if (index+2 < names.length) {
-            app.render(names, index+1);   // recurse until end
-          }
+          $canvas.attr('class', 'reset');   // fade to black
+          setTimeout(function() {
+            if (index+2 < names.length) {
+              app.render(names, index+1);   // recurse until end
+            }
+          }, ANIMATION_TIMER);
         }, ANIMATION_TIMER);
-      }, ANIMATION_TIMER);
+      }, ANIMATION_TIMER * 2);
     }, ANIMATION_TIMER);
   };
 

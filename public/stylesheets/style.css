@@ -59,15 +59,19 @@ a#ql {
   width: 0;
   margin-right: 0;
 }
+#canvas.stage span.first {
+  background-color: #fff;
+}
+#canvas.stage span.second {
+  width: 50px;
+}
 #canvas.advance span.first {
   width: 0;
   margin-right: 0;
   background-color: #fff;
-  color: #fff;
 }
 #canvas.advance span.second {
   width: 50px;
-  background-color: #ccc;
 }
 #canvas.reset span.first {
   width: 0;
