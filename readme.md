@@ -2,7 +2,7 @@ The Startup
 ===========
 
 Rachel and Bing had a great idea to combine startup names by chaining prefix 
-and suffix compounds. Hargobind and I developed an urge to write some code.
+and suffix compounds. Hargobind and Nico developed an urge to write some code.
 
 **Why are we doing this?** I don't really know.
 
@@ -15,6 +15,7 @@ methods of generating chains.
 TODO
 ====
 
+* Show longest chain contributor
 * Sanitize and validate POST /chains
 * Remove basic auth to allow contributors
 * Detail POST /chains responses
