@@ -44,10 +44,8 @@ http.createServer(app).listen(app.get('port'), function(){
 
 // DB
 
-var pgConnectString = 'tcp://nicovalencia:1234@localhost/thestartup';
-
 app.query = function(query, values, next, cb) {
-  pg.connect(pgConnectString, function(err, client, done) {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     if (err) {
       next(err);
     }
