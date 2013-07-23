@@ -2,7 +2,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , routes = require('./routes')
-  , pg = require('pg')
+  , pg = require('pg').native
   , chainsController = require('./controllers/chains_controller');
 
 var app = express();
