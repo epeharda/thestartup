@@ -44,8 +44,18 @@ http.createServer(app).listen(app.get('port'), function(){
 
 // DB
 
+var dbString;
+
+if ('development' == app.get('env')) {
+  dbString = process.env.DATABASE_URL;
+}
+
+if ('production' == app.get('env')){
+  dbString = process.env.HEROKU_POSTGRESQL_BRONZE_URL;
+}
+
 app.query = function(query, values, next, cb) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+  pg.connect(dbString, function(err, client, done) {
     if (err) {
       next(err);
     }
