@@ -12,3 +12,12 @@ contributers to compute new chains, or even write better/different
 methods of generating chains.
 
 
+TODO
+====
+
+* Sanitize and validate POST /chains
+* Remove basic auth to allow contributors
+* Detail POST /chains responses
+* Clean up worker and endpoints
+* Allow for contributor algorithms
+* Convert worker to distributed web worker, and allow web collaboration

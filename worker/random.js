@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var request = require('request');
 var graph = require('./graph.json');
 var names = Object.keys(graph);
 var chain = [];
@@ -10,7 +11,23 @@ function sample(array) {
   return array[i];
 }
 
-while(true) {
+function postLongestChain(chain) {
+
+  request({
+    method: 'POST',
+    url: process.env.ENDPOINT,
+    body: {
+      contributor_name: process.env.USERNAME,
+      names: chain,
+      password: process.env.PASSWORD
+    },
+    json: true
+  }, function (error, response, body) {});
+
+  console.log('Posting new chain to master. Length: ' + best.length);
+}
+
+function loop() {
   if(chain.length < 1) {
     chain.push(sample(names));
     index['!' + chain[0]] = true;
@@ -24,11 +41,11 @@ while(true) {
     index['!' + next] = true;
     chain.push(next);
   } else {
+
     // Dead End or loop
     if(chain.length > best.length) {
       best = chain;
-      console.log('New best chain of length: ' + best.length + '\n' + JSON.stringify(best));
-      // TODO Report Chain if longest
+      postLongestChain(best);
     }
 
     // Remove a random chunk from the end of the chain
@@ -37,5 +54,10 @@ while(true) {
       index['!' + item] = false;
     });
     chain = chain.slice(0, size);
+
   }
+
+  setImmediate(loop);
 }
+
+loop();

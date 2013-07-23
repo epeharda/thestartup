@@ -1,20 +1,21 @@
 (function(window, $) {
 
-  var TEMP_NAMES = ['little dog', 'doghouse', 'house warming partners', 'partners', 'partners in crime', 'crime stoppers'];
-
   var ANIMATION_TIMER = 1000;
   var app = {};
 
   app.init = function() {
     app.loadNames()
-      .then(app.buildNames)
+      .then(app.parseData)
       .then(app.render);
   };
 
   app.loadNames = function() {
-    //return $.get('/names');
+    return $.getJSON('/chains/longest');
+  };
 
-    return new $.Deferred().resolve(TEMP_NAMES);
+  app.parseData = function(data) {
+    app.longestChain = data;
+    return app.buildNames(data.names);
   };
 
   app.buildNames = function(names) {
