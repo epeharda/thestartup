@@ -25,33 +25,35 @@ function postLongestChain(chain) {
   }, function (error, response, body) {});
 
   console.log('Posting new chain to master. Length: ' + best.length);
+  console.log(JSON.stringify(chain));
 }
 
 function loop() {
   if(chain.length < 1) {
-    chain.push(sample(names));
-    index['!' + chain[0]] = true;
+    chain.push(_.random(graph.names.length - 1));
+    index[chain[0]] = true;
   }
 
   var tail = chain[chain.length - 1];
+  var nexts = graph.graph.slice(graph.offsets[tail], graph.offsets[tail+1]);
+  var next = sample(nexts);
 
-  var next = sample(graph[tail] || []);
-
-  if(next && !index['!' + next]) {
-    index['!' + next] = true;
+  
+  if(next && !index[next]) {
+    index[next] = true;
     chain.push(next);
   } else {
 
     // Dead End or loop
     if(chain.length > best.length) {
-      best = chain;
+      best = _.map(chain, function(id) { return graph.names[id]; });
       postLongestChain(best);
     }
 
     // Remove a random chunk from the end of the chain
     var size = _.random(chain.length - 1);
     _.each(chain.slice(size), function(item) {
-      index['!' + item] = false;
+      index[item] = false;
     });
     chain = chain.slice(0, size);
 
