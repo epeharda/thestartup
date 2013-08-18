@@ -1,15 +1,43 @@
+html {
+  width: 100%;
+  height: 100%;
+  background: url('/images/background.jpg') no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 h1 {
-  color: #ff6b6b;
+  color: #fff;
+  font-size: 450%;
+  margin: 20px 0 0;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  -webkit-transition: font-size 0.5s;
+  -moz-transition: font-size 0.5s;
+  -ms-transition: font-size 0.5s;
+  -o-transition: font-size 0.5s;
 }
 a {
-  color: #556270;
+  color: #808080;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
 }
 p {
   width: 400px;
+  color: #333333;
+}
+#content {
+  float: left;
+  clear: both;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px 30px 30px;
+  margin: 20px 0 40px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
 }
 #stats {
   float: left;
@@ -17,7 +45,7 @@ p {
   text-transform: uppercase;
   font-size: 120%;
   font-weight: bold;
-  padding: 20px 0 30px;
+  padding: 0;
   margin: 0;
 }
 #stats li {
@@ -26,14 +54,18 @@ p {
   list-style: none;
 }
 #stats li.longest {
-  color: #4ecdc4;
+  color: #456e74;
 }
 #stats li.separator {
   padding: 0 20px;
-  color: #556270;
+  color: #333333;
 }
 #stats li.current {
-  color: #c7f464;
+  color: #03b0ab;
+}
+#stats li.longest,
+#stats li.current {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 a#ql {
   position: absolute;
@@ -41,19 +73,33 @@ a#ql {
   bottom: 58px;
   display: block;
   text-indent: -9000em;
-  width: 50px;
-  height: 50px;
-  background: url('../images/quickleft.png') no-repeat;
+  width: 120px;
+  height: 120px;
+  background: url('/images/quickleft.png') no-repeat;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
 }
 #canvas {
   float: left;
   clear: both;
 }
 #canvas.show span.first {
-  width: 50px;
+  width: 65px;
+}
+@media (max-height: 745px) {
+  #canvas.show span.first {
+    width: 32.5px;
+  }
 }
 #canvas.show span.overlap {
-  width: 50px;
+  width: 65px;
+}
+@media (max-height: 745px) {
+  #canvas.show span.overlap {
+    width: 32.5px;
+  }
 }
 #canvas.show span.second {
   width: 0;
@@ -61,36 +107,79 @@ a#ql {
 }
 #canvas.stage span.first {
   background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 #canvas.stage span.second {
-  width: 50px;
+  width: 65px;
+}
+@media (max-height: 745px) {
+  #canvas.stage span.second {
+    width: 32.5px;
+  }
 }
 #canvas.advance span.first {
   width: 0;
   margin-right: 0;
   background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 #canvas.advance span.second {
-  width: 50px;
+  width: 65px;
+}
+@media (max-height: 745px) {
+  #canvas.advance span.second {
+    width: 32.5px;
+  }
 }
 #canvas.reset span.first {
   width: 0;
   margin-right: 0;
 }
 #canvas.reset span.overlap {
-  width: 50px;
+  width: 65px;
+}
+@media (max-height: 745px) {
+  #canvas.reset span.overlap {
+    width: 32.5px;
+  }
 }
 #canvas span {
   float: left;
   clear: none;
-  font-size: 120%;
-  width: 50px;
-  height: 30px;
-  padding-top: 10px;
+  font-size: 200%;
+  color: #808080;
+  width: 65px;
+  height: 50px;
+  padding-top: 15px;
   margin-right: 1px;
   margin-bottom: 1px;
-  background-color: #efefef;
+  background-color: #ccc;
+  background-color: rgba(255, 255, 255, 0.95);
   overflow: hidden;
   text-align: center;
-  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+@media (max-height: 745px) {
+  h1 {
+    font-size: 300%;
+  }
+  #content {
+    margin: 10px 0;
+    padding: 5px 15px 15px;
+    font-size: 90%;
+  }
+  a#ql {
+    width: 50px;
+    height: 50px;
+    background: url('/images/quickleft-small.png') no-repeat;
+  }
+  #canvas span {
+    font-size: 120%;
+    width: 32.5px;
+    height: 22.5px;
+    padding-top: 5px;
+  }
 }

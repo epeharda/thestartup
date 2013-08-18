@@ -1,23 +1,53 @@
+@import 'css3';
+
+html {
+  width: 100%;
+  height: 100%;
+  background: url('/images/background.jpg') no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-@lightRed: #FF6B6B;
-@green: #C7F464;
-@gray: #556270;
-@blue: #4ECDC4;
+// Quick Left Brand Colors
+@secondaryLightOlive: #9F9C5C;
+@secondaryDarkCyan: #456E74;
+@primaryDarkGray: #333;
+@secondaryCyan: #03B0AB;
+@primaryMediumGray: #808080;
 
 h1 {
-  color: @lightRed;
+  color: #fff;
+  font-size: 450%;
+  margin: 20px 0 0;
+  .text-shadow(3px 3px 6px rgba(0,0,0,0.5));
+
+  .transition(font-size 0.5s);
 }
 
 a {
-  color: @gray;
+  color: @primaryMediumGray;
+  .text-shadow(1px 1px 0px rgba(0,0,0,0.2));
 }
 
 p {
   width: 400px;
+  color: @primaryDarkGray;
+}
+
+#content {
+  float: left;
+  clear: both;
+  background-color: #fff;
+  background-color: rgba(255,255,255,0.9);
+  padding: 20px 30px 30px;
+  margin: 20px 0 40px;
+
+  .transition(all 0.5s);
 }
 
 #stats {
@@ -26,7 +56,7 @@ p {
   text-transform: uppercase;
   font-size: 120%;
   font-weight: bold;
-  padding: 20px 0 30px;
+  padding: 0;
   margin: 0;
 
   li {
@@ -36,16 +66,21 @@ p {
   }
 
   li.longest {
-    color: @blue;
+    color: @secondaryDarkCyan;
   }
 
   li.separator {
     padding: 0 20px;
-    color: @gray;
+    color: @primaryDarkGray;
   }
 
   li.current {
-    color: @green;
+    color: @secondaryCyan;
+  }
+
+  li.longest,
+  li.current {
+    .text-shadow(1px 1px 1px rgba(0,0,0,0.2));
   }
 
 }
@@ -56,9 +91,11 @@ a#ql {
   bottom: 58px;
   display: block;
   text-indent: -9000em;
-  width: 50px;
-  height: 50px;
-  background: url('../images/quickleft.png') no-repeat;
+  width: 120px;
+  height: 120px;
+  background: url('/images/quickleft.png') no-repeat;
+
+  .transition(all 0.5s);
 }
 
 
@@ -67,11 +104,15 @@ a#ql {
 // ***********
 
 
-@width: 50px;
+@width: 65px;
 @speed: 0.5s;
 
 .slideShow() {
   width: @width;
+
+  @media (max-height: 745px) {
+    width: @width / 2;
+  }
 }
 
 .slideHide() {
@@ -81,6 +122,7 @@ a#ql {
 
 .firstStyle() {
   background-color: #fff;
+  background-color: rgba(255,255,255,0.5);
 }
 
 #canvas {
@@ -142,16 +184,46 @@ a#ql {
   span {
     float: left;
     clear: none;
-    font-size: 120%;
+    font-size: 200%;
+    color: @primaryMediumGray;
     width: @width;
-    height: @width - 20;
-    padding-top: 10px;
+    height: @width - 15;
+    padding-top: 15px;
     margin-right: 1px;
     margin-bottom: 1px;
-    background-color: #efefef;
+    background-color: #ccc;
+    background-color: rgba(255,255,255,0.95);
     overflow: hidden;
     text-align: center;
 
-    transition: all @speed;
+    .transition(all @speed);
   }
+}
+
+@media (max-height: 745px) {
+  h1 {
+    font-size: 300%;
+  }
+
+  #content {
+    margin: 10px 0;
+    padding: 5px 15px 15px;
+    font-size: 90%;
+  }
+
+  a#ql {
+    width: 50px;
+    height: 50px;
+    background: url('/images/quickleft-small.png') no-repeat;
+  }
+
+  #canvas {
+    span {
+      font-size: 120%;
+      width: @width / 2;
+      height: (@width / 2) - 10;
+      padding-top: 5px;
+    }
+  }
+
 }
