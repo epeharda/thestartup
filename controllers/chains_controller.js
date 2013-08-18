@@ -2,16 +2,29 @@ var _ = require('underscore');
 
 function chainsController(app) {
   this.app = app;
-  _.bindAll(this, 'longest', 'create');
+  _.bindAll(this, 'longest', 'random', 'create');
 }
 
 chainsController.prototype.longest = function(req, res, next){
-  var query = 'SELECT * FROM chains WHERE total_length = (SELECT MAX(total_length) FROM chains)';
+  var query = 'SELECT * FROM chains ORDER BY total_length DESC LIMIT 1;';
 
   this.app.query(query, null, next, function(result) {
+    console.log(arguments);
     var longestChain = result.rows[0];
     longestChain.names = JSON.parse(longestChain.names);
     res.send(longestChain);
+  });
+};
+
+
+chainsController.prototype.random = function(req, res, next){
+  var query = 'SELECT * FROM chains ORDER BY RANDOM() LIMIT 1;';
+
+  this.app.query(query, null, next, function(result) {
+    console.log(arguments);
+    var randomChain = result.rows[0];
+    randomChain.names = JSON.parse(randomChain.names);
+    res.send(randomChain);
   });
 };
 

@@ -51,6 +51,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/chains/longest', app.controllers.chains.longest);
+app.get('/chains/random', app.controllers.chains.random);
 app.post('/chains', app.controllers.chains.create);
 
 // HTTP SERVER
@@ -79,6 +80,7 @@ app.query = function(query, values, next, cb) {
 
     client.query(query, values, function(err, result) {
       if (err) {
+        console.log(err);
         done();
         next(err);
       }

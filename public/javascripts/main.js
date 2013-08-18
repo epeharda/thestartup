@@ -3,18 +3,22 @@
   var ANIMATION_TIMER = 1000;
   var app = {};
 
-  app.init = function() {
-    app.loadNames()
+  app.init = function(category) {
+    if(app.timeout) {
+      clearTimeout(app.timeout);
+    }
+    app.loadNames(category || "longest")
       .then(app.parseData)
       .then(app.render);
   };
 
-  app.loadNames = function() {
-    return $.getJSON('/chains/longest');
+  app.loadNames = function(category) {
+    app.category = category || "longest"
+    return $.ajax('/chains/' + app.category, {cache: false});
   };
 
   app.parseData = function(data) {
-    app.longestChain = data;
+    app.chain = data;
     return app.buildNames(data.names);
   };
 
@@ -26,7 +30,7 @@
       }
     });
 
-    app.updateLongestChain(nameObjects.length);
+    app.updateChain(app.category, nameObjects.length);
 
     return nameObjects;
   };
@@ -41,18 +45,18 @@
 
     // *deep breath*
     $canvas.attr('class', 'show');          // show first & overlap
-    setTimeout(function() {
+    app.timeout = setTimeout(function() {
 
       app.updateCurrent(index+2);           // update current counter
 
       $canvas.attr('class', 'stage');       // first (fade) & overlap & second
-      setTimeout(function() {
+      app.timeout = setTimeout(function() {
         $canvas.attr('class', 'advance');   // show overlap & second
-        setTimeout(function() {
+        app.timeout = setTimeout(function() {
           $canvas.attr('class', 'reset');   // fade to black
-          setTimeout(function() {
+          app.timeout = setTimeout(function() {
             if (index+2 < names.length) {
-              app.render(names, index+1);   // recurse until end
+              app.timeout = app.render(names, index+1);   // recurse until end
             }
           }, ANIMATION_TIMER);
         }, ANIMATION_TIMER);
@@ -100,14 +104,19 @@
     });
   };
 
-  app.updateLongestChain = function(len) {
-    $('#stats .longest span').text(len);
+  app.updateChain = function(category, len) {
+    $('#stats .chain').text(category.toUpperCase() + " Chain [" + len + "]");
   };
 
   app.updateCurrent = function(index) {
     $('#stats .current span').text(index);
   };
 
-  $(document).ready(app.init);
+  $(function() {
+    app.init()
+    $("a[data-category]").click(function(event) {
+      app.init($(this).data('category'));
+    });
+  });
 
 })(this, jQuery);
