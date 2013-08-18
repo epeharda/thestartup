@@ -16,7 +16,7 @@ chainsController.prototype.longest = function(req, res, next){
 };
 
 chainsController.prototype.create = function(req, res, next){
-  if (!app.validator) {
+  if (!this.app.validator) {
     res.send(500, "Server has not finished loading the validator... please try again shortly");
   }
 
@@ -25,7 +25,7 @@ chainsController.prototype.create = function(req, res, next){
     next();
   }
 
-  var validationResult = app.validator.validate(req.body.names);
+  var validationResult = this.app.validator.validate(req.body.names);
 
   if(validationResult !== true) {
     res.send(422, _.isString(validationResult) ? validationResult : "Invalid name chain");
