@@ -22,7 +22,14 @@ function postLongestChain(chain) {
       password: process.env.PASSWORD
     },
     json: true
-  }, function (error, response, body) {});
+  }, function (error, response, body) {
+    if(error) {
+      console.log(error);
+    }
+    if(body) {
+      console.log(body);
+    }
+  });
 
   console.log('Posting new chain to master. Length: ' + best.length);
   console.log(JSON.stringify(chain));

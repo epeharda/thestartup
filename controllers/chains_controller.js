@@ -22,7 +22,7 @@ chainsController.prototype.create = function(req, res, next){
 
   if (req.body.password !== process.env.PASSWORD) {
     res.send(401);
-    next();
+    return;
   }
 
   var validationResult = this.app.validator.validate(req.body.names);
