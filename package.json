@@ -13,6 +13,7 @@
     "ejs": "*",
     "less-middleware": "*",
     "pg": "~2.2.0",
-    "underscore": "~1.5.1"
+    "underscore": "~1.5.1",
+    "lodash": "~1.3.1"
   }
 }

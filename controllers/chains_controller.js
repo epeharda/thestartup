@@ -16,9 +16,20 @@ chainsController.prototype.longest = function(req, res, next){
 };
 
 chainsController.prototype.create = function(req, res, next){
+  if (!app.validator) {
+    res.send(500, "Server has not finished loading the validator... please try again shortly");
+  }
+
   if (req.body.password !== process.env.PASSWORD) {
     res.send(401);
     next();
+  }
+
+  var validationResult = app.validator.validate(req.body.names);
+
+  if(validationResult !== true) {
+    res.send(422, _.isString(validationResult) ? validationResult : "Invalid name chain");
+    return;
   }
 
   var contributor_name = req.body.contributor_name;

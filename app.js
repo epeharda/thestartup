@@ -3,9 +3,26 @@ var express = require('express')
   , path = require('path')
   , routes = require('./routes')
   , pg = require('pg').native
-  , chainsController = require('./controllers/chains_controller');
+  , fs = require('fs')
+  , zlib = require('zlib')
+  , chainsController = require('./controllers/chains_controller')
+  , Validator = require('./lib/validator');
 
 var app = express();
+
+// VALIDATOR
+
+var graph;
+var graphBuffer = fs.readFileSync("./data/graph.json.gz");
+zlib.gunzip(graphBuffer, function(err, buffer) {
+  if(err) {
+    throw err;
+  }
+
+  graph = JSON.parse(buffer.toString("utf-8"));
+  app.validator = new Validator(graph);
+  console.log("Validator loaded");
+});
 
 // CONTROLLERS
 
