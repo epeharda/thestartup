@@ -107,6 +107,7 @@ a#ql {
 }
 #canvas.stage span.first {
   background-color: #fff;
+  color: #333;
   background-color: rgba(255, 255, 255, 0.5);
 }
 #canvas.stage span.second {
@@ -117,10 +118,20 @@ a#ql {
     width: 32.5px;
   }
 }
+#canvas.stage span.overlap {
+  color: #fff;
+  text-shadow: -1px -1px 1px #333333;
+  background-color: rgba(255, 255, 255, 0.85);
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
 #canvas.advance span.first {
   width: 0;
   margin-right: 0;
   background-color: #fff;
+  color: #333;
   background-color: rgba(255, 255, 255, 0.5);
 }
 #canvas.advance span.second {
