@@ -105,7 +105,7 @@ a#ql {
 
 
 @width: 65px;
-@speed: 0.5s;
+@speed: 1s;
 
 .slideShow() {
   width: @width;
@@ -155,8 +155,6 @@ a#ql {
         .slideShow();
       }
       &.overlap {
-        color: #fff;
-        .text-shadow(-1px -1px 1px #333);
         background-color: rgba(255,255,255,0.85);
         .transition(all @speed);
       }
@@ -192,7 +190,7 @@ a#ql {
     float: left;
     clear: none;
     font-size: 200%;
-    color: @primaryMediumGray;
+    color: #333;
     width: @width;
     height: @width - 15;
     padding-top: 15px;

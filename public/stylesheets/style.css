@@ -119,13 +119,11 @@ a#ql {
   }
 }
 #canvas.stage span.overlap {
-  color: #fff;
-  text-shadow: -1px -1px 1px #333333;
   background-color: rgba(255, 255, 255, 0.85);
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  -o-transition: all 0.5s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
 }
 #canvas.advance span.first {
   width: 0;
@@ -158,7 +156,7 @@ a#ql {
   float: left;
   clear: none;
   font-size: 200%;
-  color: #808080;
+  color: #333;
   width: 65px;
   height: 50px;
   padding-top: 15px;
@@ -168,10 +166,10 @@ a#ql {
   background-color: rgba(255, 255, 255, 0.95);
   overflow: hidden;
   text-align: center;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  -o-transition: all 0.5s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
 }
 @media (max-height: 745px) {
   h1 {

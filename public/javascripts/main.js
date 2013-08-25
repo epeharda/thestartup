@@ -44,16 +44,29 @@
     $canvas.html($chars);
 
     // *deep breath*
-    $canvas.attr('class', 'show');          // show first & overlap
+    var hideClass = 'rollOut';
+    var showClass = 'rollIn';
+
+    $canvas.attr('class', 'show');       // show first and overlap
+    $canvas.find('.second').addClass(hideClass);
+    $canvas.find('.overlap').addClass(showClass);
+
     app.timeout = setTimeout(function() {
 
       app.updateCurrent(index+2);           // update current counter
 
       $canvas.attr('class', 'stage');       // first (fade) & overlap & second
+      $canvas.find('.second').addClass(showClass);
+
       app.timeout = setTimeout(function() {
+
         $canvas.attr('class', 'advance');   // show overlap & second
+
         app.timeout = setTimeout(function() {
+
           $canvas.attr('class', 'reset');   // fade to black
+          $canvas.find('.first').addClass(hideClass);
+
           app.timeout = setTimeout(function() {
             if (index+2 < names.length) {
               app.timeout = app.render(names, index+1);   // recurse until end
@@ -96,6 +109,10 @@
   };
 
   app.wrapChars = function(chars, classes) {
+
+    // Add animate.css animation class
+    classes += ' animated';
+
     return _.map(chars.split(''), function(c) {
       return $('<span/>', {
         text: c,
