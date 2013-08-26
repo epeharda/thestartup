@@ -19,6 +19,7 @@
 
   app.parseData = function(data) {
     app.chain = data;
+		app.renderContributorInfo(data);
     return app.buildNames(data.names);
   };
 
@@ -34,6 +35,11 @@
 
     return nameObjects;
   };
+
+	app.renderContributorInfo = function(data) {
+		var name = data.contributor_name || "Anonymous";
+		$('.contributor').text("Created by: "+name);
+	};
 
   app.render = function(names, index) {
     index = index || 0;

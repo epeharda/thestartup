@@ -33,11 +33,6 @@ chainsController.prototype.create = function(req, res, next){
     res.send(500, "Server has not finished loading the validator... please try again shortly");
   }
 
-  if (req.body.password !== process.env.PASSWORD) {
-    res.send(401);
-    return;
-  }
-
   var validationResult = this.app.validator.validate(req.body.names);
 
   if(validationResult !== true) {
