@@ -131,9 +131,21 @@
 
   $(function() {
     app.init()
-    $("a[data-category]").click(function(event) {
-      app.init($(this).data('category'));
+
+		// events - switch chain type
+		var $btns = $('a[data-category]');
+    $btns.click(function(event) {
+			event.preventDefault();
+			var $btn = $(this);
+			var category = $btn.data('category');
+
+			$btns.removeClass('active');
+			$btn.addClass('active');
+      app.init(category);
+
+			return false;
     });
+
   });
 
 })(this, jQuery);
