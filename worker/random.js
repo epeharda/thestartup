@@ -18,8 +18,7 @@ function postLongestChain(chain) {
     url: process.env.ENDPOINT,
     body: {
       contributor_name: process.env.USERNAME,
-      names: chain,
-      password: process.env.PASSWORD
+      names: chain
     },
     json: true
   }, function (error, response, body) {
