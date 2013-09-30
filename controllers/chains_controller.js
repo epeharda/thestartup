@@ -59,7 +59,7 @@ chainsController.prototype.create = function(req, res, next){
 
     if (isValid) {
 
-      _this.app.query('SELECT MAX(total_length) FROM chains', null, next, function(result) {
+      _this.app.query('SELECT MAX(total_length) FROM chains WHERE contributor_name = $1', [contributor_name], next, function(result) {
 
         var max = result.rows[0].max || 0;
 
