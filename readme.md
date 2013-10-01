@@ -27,7 +27,7 @@ Setup
 
 **For contributors:**
 
-Set ENV vars for `USERNAME` [default __anonymous__] and `ENDPOINT`
+Set ENV vars for `CONTRIBUTOR_NAME` [default $USERNAME or __Anonymous__] and `ENDPOINT`
 [default __http://thestartup.quickleft.com/chains__].
 
 * Make sure you have [Node.js](http://nodejs.org) and [npm](https://npmjs.org) installed
