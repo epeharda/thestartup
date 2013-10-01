@@ -4,20 +4,22 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/animate.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script type='text/javascript'>
-      //<![CDATA[
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-27099587-1']);
-        _gaq.push(['_setDomainName', 'quickleft.com']);
-        _gaq.push(['_trackPageview']);
+    <% if (environment === "production") { %>
+      <script type='text/javascript'>
+        //<![CDATA[
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-27099587-1']);
+          _gaq.push(['_setDomainName', 'quickleft.com']);
+          _gaq.push(['_trackPageview']);
 
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-      //]]>
-    </script>
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        //]]>
+      </script>
+    <% } %>
   </head>
   <body>
 
@@ -56,15 +58,17 @@
 
     <script src="javascripts/main.js"></script>
 
-    <!-- HUBSPOT -->
-    <script type="text/javascript">
-      (function(d,s,i,r) {
-        if (d.getElementById(i)){return;}
-        var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
-        n.id=i;n.src='//js.hubspot.com/analytics/'+(Math.ceil(new Date()/r)*r)+'/219394.js';
-        e.parentNode.insertBefore(n, e);
-      })(document,"script","hs-analytics",300000);
-    </script>
+    <% if (environment === "production") { %>
+      <!-- HUBSPOT -->
+      <script type="text/javascript">
+        (function(d,s,i,r) {
+          if (d.getElementById(i)){return;}
+          var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+          n.id=i;n.src='//js.hubspot.com/analytics/'+(Math.ceil(new Date()/r)*r)+'/219394.js';
+          e.parentNode.insertBefore(n, e);
+        })(document,"script","hs-analytics",300000);
+      </script>
+    <% } %>
 
   </body>
 </html>
