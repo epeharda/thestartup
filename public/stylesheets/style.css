@@ -24,7 +24,7 @@ a {
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);
 }
 p {
-  width: 400px;
+  width: 585px;
   color: #333333;
 }
 #content {
@@ -55,16 +55,6 @@ p {
 }
 #stats li.chain {
   color: #456e74;
-}
-#stats li.separator {
-  padding: 0 20px;
-  color: #333333;
-}
-#stats li.current {
-  color: #03b0ab;
-}
-#stats li.longest,
-#stats li.current {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 a#ql {
@@ -82,7 +72,7 @@ a#ql {
   -o-transition: all 0.5s;
 }
 .btns {
-  float: left;
+  float: right;
   clear: both;
 }
 .btn {
@@ -160,10 +150,20 @@ a#ql {
     width: 32.5px;
   }
 }
+@media (max-width: 700px) {
+  #canvas.show span.first {
+    width: 32.5px;
+  }
+}
 #canvas.show span.overlap {
   width: 65px;
 }
 @media (max-height: 745px) {
+  #canvas.show span.overlap {
+    width: 32.5px;
+  }
+}
+@media (max-width: 700px) {
   #canvas.show span.overlap {
     width: 32.5px;
   }
@@ -181,6 +181,11 @@ a#ql {
   width: 65px;
 }
 @media (max-height: 745px) {
+  #canvas.stage span.second {
+    width: 32.5px;
+  }
+}
+@media (max-width: 700px) {
   #canvas.stage span.second {
     width: 32.5px;
   }
@@ -207,6 +212,11 @@ a#ql {
     width: 32.5px;
   }
 }
+@media (max-width: 700px) {
+  #canvas.advance span.second {
+    width: 32.5px;
+  }
+}
 #canvas.reset span.first {
   width: 0;
   margin-right: 0;
@@ -215,6 +225,11 @@ a#ql {
   width: 65px;
 }
 @media (max-height: 745px) {
+  #canvas.reset span.overlap {
+    width: 32.5px;
+  }
+}
+@media (max-width: 700px) {
   #canvas.reset span.overlap {
     width: 32.5px;
   }
@@ -251,6 +266,17 @@ a#ql {
     width: 50px;
     height: 50px;
     background: url('/images/quickleft-small.png') no-repeat;
+  }
+  #canvas span {
+    font-size: 120%;
+    width: 32.5px;
+    height: 22.5px;
+    padding-top: 5px;
+  }
+}
+@media (max-width: 700px) {
+  p {
+    width: 400px;
   }
   #canvas span {
     font-size: 120%;
